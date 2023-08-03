@@ -17,3 +17,21 @@ steps:
   - name: golang
     args: ['go', 'run', 'quickstart-automate/main.go']
 # [END cloudbuild_quickstart_automate]
+
+  # [START cloudbuild_go_image_yaml]
+  # Docker Build
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', 
+           'asia-northeast2-docker.pkg.dev/$PROJECT_ID/quickstart-docker-repo/myimage:1.0.0', '.']
+  # [END cloudbuild_go_image_yaml]
+  
+  # [START cloudbuild_go_push_yaml]
+  # Docker push to Google Artifact Registry
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'asia-northeast2-docker.pkg.dev/$PROJECT_ID/quickstart-docker-repo/myimage:1.0.0']
+  # [END cloudbuild_go_push_yaml]
+  
+  # Store images in Google Artifact Registry
+images:
+  - asia-northeast2-docker.pkg.dev/$PROJECT_ID/$_REPO_NAME/quickstart-docker-repo/myimage:1.0.0
+# [END cloudbuild_go_yaml]
