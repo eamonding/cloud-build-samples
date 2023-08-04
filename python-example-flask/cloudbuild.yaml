@@ -60,4 +60,4 @@ steps:
 # Store images in Google Artifact Registry 
 images:
   - asia-northeast2-docker.pkg.dev/${PROJECT_ID}/quickstart-docker-repo/myimage:${SHORT_SHA}
-# [END cloudbuild_python_yaml]
+# [END cloudbuild_python_yaml]#
